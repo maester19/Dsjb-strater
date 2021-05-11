@@ -31,5 +31,9 @@ services:
         resource: '../src/Http/Api/'
         tags: ['controller.service_arguments']
 
+    App\Domain\Auth\:
+        resource: '../src/Domain/Auth/'
+        tags: ['Entity.service_arguments']
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
