@@ -2,8 +2,31 @@
 
 {% block title "Connection" %}
 
+{% block stylesheets %}
+<style>
+    body{
+        background: url("{{ asset('img/login.jpg') }}");
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+    .block{
+        background: rgba(20, 50, 100, 0.5);
+        margin-top:100px;
+        border-radius:50px;
+        padding:10px;
+    }
+    .block:hover{
+        padding: 30px;
+    }
+</style>
+{% endblock %}
+
 {% block body %}
-    <div class="container mt-3">
+
+    <div class="block mt-9 ml-5" style="width:30%;height:auto;">
+        <div class="ml-4"style=" width: 100%;">
+            <h1>Connecter Vous</h1>
+        </div>
         {% if error %}
             <div class="alert alert-danger">
                 {{ error.messageKey | trans(error.messageData, 'security') }}
@@ -20,7 +43,7 @@
                 <input type="password" id="password" name="_password" class="form-control">
             </div>
     
-            <button class="btn btn-primary">se connecter</button>
+            <button class="btn btn-primary ml-1">se connecter</button>
         </form>
     </div>
 

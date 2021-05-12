@@ -22,8 +22,11 @@ class SecurityController extends AbstractController
              "error" => $error
          ]);
      }
+
      /**
      * @Route("/admin", name="admin")
+     * 
+     * @return Response
      */
 
     public function admin():Response
