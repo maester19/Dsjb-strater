@@ -23,15 +23,4 @@ class SecurityController extends AbstractController
          ]);
      }
 
-     /**
-     * @Route("/admin", name="admin")
-     * 
-     * @return Response
-     */
-
-    public function admin():Response
-    {
-        return new Response("Partie Adminitrateur");
-    }
-
 }

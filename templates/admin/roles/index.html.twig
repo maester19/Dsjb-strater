@@ -1,0 +1,47 @@
+{% extends "base/base.html.twig" %}
+
+{% block title "Gerer les roles" %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Gerer les roles</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for role in roles %}
+                <tr>
+                    <td>{{ role.name }} </td>
+                    <td>
+                        <a href="{{ path('admin.roles.edit', {'id': role.id}) }} " class="btn btn-secondary"> Editer</a>
+                        <form method="post" action="{{ path('admin.roles.delete', {'id': role.id}) }}" style="display:inline-block;" onsubmit="return confirm('Etes vous vraiment sur ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ role.id) }} ">
+                            <button class="btn btn-danger">Suprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{ path('admin.roles.new') }} " class="btn btn-primary">Creer un nouveau role</a>
+        </div>
+
+    </div>
+
+    
+
+{% endblock %}

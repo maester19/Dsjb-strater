@@ -10,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Users implements UserInterface, Serializable
 {
+    const ROLES = [
+        0 => "ROLE_ADMIN",
+        1 => "ROLE_USER"
+    ];
 
     /**
      * @ORM\Id()
@@ -78,6 +82,11 @@ class Users implements UserInterface, Serializable
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function getRolesType(): ?string
+    {
+        return self::ROLES[$this->roles];
     }
 
     /**

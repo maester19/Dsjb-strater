@@ -1,0 +1,10 @@
+{% extends "base/base.html.twig" %}
+
+
+{% block body %}
+    
+<div class="container mt-4">
+    <h1>Creer un role</h1>
+    {{ include("admin/roles/_form.html.twig", {form: form, button: 'Creer'}) }}
+</div>
+{% endblock %}
