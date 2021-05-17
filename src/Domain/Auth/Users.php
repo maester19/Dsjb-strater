@@ -11,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Users implements UserInterface, Serializable
 {
     const ROLES = [
-        0 => "ROLE_ADMIN",
-        1 => "ROLE_USER"
+        "ADMINISTRTEUR" => "ROLE_ADMIN",
+        "UTILISATEUR" => "ROLE_USER"
     ];
 
     /**

@@ -1,11 +1,29 @@
 {% extends 'base/base.html.twig' %}
 
 {% block title %}New User{% endblock %}
+{% block stylesheets %}
+<style>
+    body{
+        background: url("{{ asset('img/welcome.jpeg') }}");
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+    .block{
+        background:rgba(10, 15, 15, 0.8);
+        width:40%;
+        color:white;
+        border-radius:10px;
+        padding:10px;
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
+    <div class="block m-5">
+        <h1>Create new User</h1>
 
     {{ include("admin/user/_form.html.twig", {form: form, button: 'Creer'}) }}
 
-    <a href="{{ path('admin.user.index') }}" class="btn btn-secondary">  << back to list</a>
+    <a href="{{ path('admin.user.index') }}" class="btn btn-secondary" style="display: inline-block">  << back to list</a>
+    </div>
 {% endblock %}

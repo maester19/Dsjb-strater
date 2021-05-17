@@ -8,19 +8,23 @@ use App\Domain\Repository\UsersRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminUserController extends AbstractController
 {
     /**
      * @var UsersRepository
+     * @var UserPasswordEncoderInterface
      */
 
      private $repository;
+     private $encoder;
 
-     public function __construct(UsersRepository $repository)
+     public function __construct(UsersRepository $repository, UserPasswordEncoderInterface $encoder)
      {
          $this->repository = $repository;
+         $this->encoder = $encoder;
      }
 
      /**
@@ -44,6 +48,7 @@ class AdminUserController extends AbstractController
 
         $form = $this->createForm(UserType::class, $user); 
         $form->handleRequest($request);  
+        // $user->setPassword($this->encoder->encodePassword($user,$user->getPassword()));
 
         if($form->isSubmitted() && $form->isValid())
         {
@@ -70,6 +75,7 @@ class AdminUserController extends AbstractController
        {
         $form = $this->createForm(UserType::class, $user); 
         $form->handleRequest($request);  
+        $user->setPassword($this->encoder->encodePassword($user,$user->getPassword()));
 
         if($form->isSubmitted() && $form->isValid())
         {

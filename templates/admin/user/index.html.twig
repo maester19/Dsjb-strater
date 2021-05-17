@@ -2,14 +2,35 @@
 
 {% block title %}User index{% endblock %}
 
-{% block body %}
-<div class="container mt-4">
-    <h1>utilisateur</h1>
+{% block stylesheets %}
+<style>
+    body{
+        background: url("{{ asset('img/admin-bg2.jpeg') }}");
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+    .block, table{
+        /* background: rgba(200, 200, 200, 1); */
+        margin-top:50px;
+        border-radius:5px;
+        padding:10px;
+        color:white;
+    }
+    .block td, th{
+        color:white;
+    }
+</style>
+{% endblock %}
 
-    <table class="table table-striped">
+{% block body %}
+<div class="block m-4 bg-secondary">
+    <h1>utilisateurs</h1>
+
+    <table class="table table-striped white">
         <thead>
             <tr>
                 <th>Nom</th>
+                <th>Roles</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,12 +39,13 @@
         <tr>
             <td><a href="{{ path('admin.user.show', {'id': user.id}) }} ">{{ user.nom }} </a></td>
             <td>
+                {% for role in user.roles %} 
+                    {{ role }} /
+                {% endfor %}
+            </td>
+            <td>
                 <a href="{{ path('admin.user.edit', {'id': user.id}) }} " class="btn btn-secondary"> Editer</a>
-                <form method="post" action="{{ path('admin.user.delete', {id: user.id}) }}" style="display:inline-block;" onsubmit="return confirm('Etes vous vraiment sur ?')">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }} ">
-                    <button class="btn btn-danger">Suprimer</button>
-                </form>
+                {{ include("admin/user/_delete_form.html.twig") }}
             </td>
         </tr>
         {% else %}

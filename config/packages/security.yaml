@@ -1,7 +1,7 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        from_database:
+        app_user_provider:
             entity:
                 class: App\Domain\Auth\Users
                 property: nom
@@ -12,6 +12,10 @@ security:
         main:
             anonymous: true
             lazy: true
+            provider: app_user_provider
+
+            switch_user: true
+            
             logout:
                 path: /logout
                 target: /
@@ -29,7 +33,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/profile, roles: ROLE_USER }
     
     encoders:
         App\Domain\Auth\Users: 

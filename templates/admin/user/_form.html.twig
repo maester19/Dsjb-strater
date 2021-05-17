@@ -6,6 +6,9 @@
     <div class="row"> 
         <div class="col-md-7 mt-4">{{ form_row(form.password) }}</div>
     </div>
-    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+    <div class="row"> 
+        <div class="col-md-7 mt-4">{{ form_rest(form) }}</div>
+    </div>
+    <button class="btn btn-primary" style="display: inline-block">{{ button_label|default('Save') }}</button>
 </div>
 {{ form_end(form) }}

@@ -15,6 +15,11 @@ class UserType extends AbstractType
     {
         $builder
             ->add('nom')
+            ->add("roles", ChoiceType::class, [
+                'choices' => Users::ROLES,
+                'expanded' => true,
+                'multiple' => true
+            ])
             ->add('password')
         ;
     }
@@ -24,15 +29,5 @@ class UserType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Users::class,
         ]);
-    }
-    private function getChoice()
-    {
-        $choices = Users::ROLES;
-        $output = [];
-        foreach($choices as $k => $v)
-        {
-            $output[$v]= $k;
-        }
-        return $output; 
     }
 }
